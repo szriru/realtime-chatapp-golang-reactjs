@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/szriru/realtime-chatapp-golang-reactjs/backend/pkg/websocket"
 )
@@ -33,7 +35,9 @@ func setupRoutes() {
 }
 
 func main() {
-	fmt.Println("Distributed Chat App v0.01")
+	port := os.Getenv("PORT")
+	fmt.Println("Reatime Chat App v0.01")
+	log.Println("Listening for " + port)
 	setupRoutes()
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
